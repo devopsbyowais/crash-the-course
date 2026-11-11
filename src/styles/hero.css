@@ -1,0 +1,664 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid #f1f5f9;
+  background: var(--white);
+}
+
+.hero__pattern {
+  position: absolute;
+  top: -40px;
+  right: -60px;
+  width: 58%;
+  height: 640px;
+  background-image: radial-gradient(circle, rgba(56, 189, 248, 0.28) 1.1px, transparent 1.1px);
+  background-size: 22px 22px;
+  opacity: 0.5;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(120deg, transparent 10%, #000 58%, transparent 96%);
+  mask-image: linear-gradient(120deg, transparent 10%, #000 58%, transparent 96%);
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.03fr 0.97fr;
+  align-items: center;
+  gap: 54px;
+  padding-top: 80px;
+  padding-bottom: 104px;
+}
+
+.hero__copy {
+  max-width: 610px;
+}
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border: 1px solid #bae6fd;
+  border-radius: 999px;
+  background: var(--sky-mist);
+  color: var(--sky-deep);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  animation: heroEnter 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero__badge svg {
+  color: var(--sky-strong);
+}
+
+.hero h1 {
+  max-width: 650px;
+  margin: 24px 0 23px;
+  color: var(--black);
+  font-size: clamp(3.15rem, 4.85vw, 4.45rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+  animation: heroEnter 0.7s 0.07s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero__highlight {
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+}
+
+.hero__highlight::before {
+  position: absolute;
+  right: -0.02em;
+  bottom: 0.045em;
+  left: -0.02em;
+  z-index: -1;
+  height: 0.34em;
+  border-radius: 7px;
+  background: #bae6fd;
+  content: '';
+  transform: rotate(-0.8deg);
+}
+
+.hero__description {
+  max-width: 560px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.72;
+  animation: heroEnter 0.7s 0.14s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+  animation: heroEnter 0.7s 0.21s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero__assurances {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 22px;
+  margin-top: 27px;
+  animation: heroEnter 0.7s 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero__assurances span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.hero__assurances svg {
+  padding: 2px;
+  border-radius: 50%;
+  background: var(--sky-soft);
+  color: var(--sky-dark);
+}
+
+.hero__visual {
+  position: relative;
+  display: flex;
+  min-height: 558px;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  animation: heroVisualIn 0.9s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero__orbit {
+  position: absolute;
+  border: 1px solid #bae6fd;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero__orbit--one {
+  top: -12px;
+  right: -50px;
+  width: 410px;
+  height: 410px;
+  opacity: 0.72;
+}
+
+.hero__orbit--two {
+  bottom: -28px;
+  left: -26px;
+  width: 270px;
+  height: 270px;
+  opacity: 0.55;
+}
+
+.learning-app {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 532px);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 25px;
+  background: var(--white);
+  box-shadow:
+    0 46px 90px -40px rgba(2, 132, 199, 0.36),
+    0 24px 50px -36px rgba(15, 23, 42, 0.32);
+  animation: appFloat 7s ease-in-out infinite;
+}
+
+.learning-app__topbar {
+  display: flex;
+  height: 43px;
+  align-items: center;
+  gap: 12px;
+  padding: 0 15px;
+  border-bottom: 1px solid var(--border);
+  background: #f8fafc;
+}
+
+.learning-app__dots {
+  display: flex;
+  gap: 4px;
+}
+
+.learning-app__dots i {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #cbd5e1;
+}
+
+.learning-app__dots i:first-child {
+  background: #64748b;
+}
+
+.learning-app__address {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  max-width: 230px;
+  height: 24px;
+  margin: 0 auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  background: var(--white);
+  color: #64748b;
+  font-size: 9px;
+  font-weight: 500;
+}
+
+.learning-app__address svg {
+  color: #64748b;
+}
+
+.learning-app__avatar {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--sky-soft);
+  color: var(--sky-deep);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.learning-app__body {
+  display: grid;
+  grid-template-columns: 53px minmax(0, 1fr);
+}
+
+.learning-app__sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 0 14px;
+  border-right: 1px solid #eef2f7;
+  background: #fbfdff;
+}
+
+.learning-app__sidebar .logo__mark {
+  width: 29px;
+  height: 29px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.learning-app__sidebar .logo__mark svg {
+  width: 17px;
+  height: 17px;
+}
+
+.learning-app__nav {
+  display: grid;
+  width: 29px;
+  height: 29px;
+  place-items: center;
+  border-radius: 8px;
+  color: #64748b;
+}
+
+.learning-app__nav.is-active {
+  background: var(--sky-soft);
+  color: var(--sky-deep);
+}
+
+.learning-app__nav--last {
+  margin-top: auto;
+}
+
+.learning-app__main {
+  min-width: 0;
+  padding: 20px 21px 22px;
+}
+
+.learning-app__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.learning-app__heading span {
+  display: block;
+  color: #64748b;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.learning-app__heading strong {
+  display: block;
+  overflow: hidden;
+  max-width: 290px;
+  margin-top: 2px;
+  color: var(--black);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.learning-app__heading .learning-app__percent {
+  display: grid;
+  width: 39px;
+  height: 39px;
+  flex: none;
+  place-items: center;
+  border: 3px solid var(--sky-soft);
+  border-top-color: var(--sky);
+  border-right-color: var(--sky);
+  border-radius: 50%;
+  color: var(--sky-deep);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.learning-app__video {
+  position: relative;
+  height: 188px;
+  overflow: hidden;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 82% 20%, rgba(56, 189, 248, 0.2), transparent 34%),
+    #0f172a;
+}
+
+.learning-app__video-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(125, 211, 252, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125, 211, 252, 0.055) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.learning-app__code {
+  position: absolute;
+  top: 30px;
+  left: 34px;
+  display: flex;
+  width: 190px;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.learning-app__code i {
+  display: block;
+  height: 5px;
+  border-radius: 99px;
+  background: rgba(186, 230, 253, 0.3);
+}
+
+.learning-app__code i.is-long {
+  width: 100%;
+  background: rgba(56, 189, 248, 0.75);
+}
+
+.learning-app__code i.is-mid {
+  width: 68%;
+  background: rgba(186, 230, 253, 0.34);
+}
+
+.learning-app__code i.is-short {
+  width: 42%;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.learning-app__code i.is-tiny {
+  width: 54%;
+  margin-top: 6px;
+  background: rgba(56, 189, 248, 0.48);
+}
+
+.learning-app__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 4px solid rgba(255, 255, 255, 0.16);
+  border-radius: 50%;
+  background: var(--sky);
+  color: #062a3d;
+  box-shadow: 0 12px 24px -10px rgba(56, 189, 248, 0.8);
+  transform: translate(-50%, -50%);
+}
+
+.learning-app__play svg {
+  margin-left: 2px;
+}
+
+.learning-app__lesson-tag {
+  position: absolute;
+  bottom: 11px;
+  left: 12px;
+  padding: 4px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  background: rgba(15, 23, 42, 0.64);
+  color: #bae6fd;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  backdrop-filter: blur(6px);
+}
+
+.learning-app__lesson {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 13px;
+}
+
+.learning-app__lesson span {
+  display: block;
+  color: #64748b;
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.learning-app__lesson strong {
+  display: block;
+  margin-top: 1px;
+  color: var(--black);
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.learning-app__lesson .learning-app__time {
+  padding: 4px 7px;
+  border-radius: 6px;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 9px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.learning-app__progress-label {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  color: #64748b;
+  font-size: 8.5px;
+  font-weight: 600;
+}
+
+.learning-app__progress-label strong {
+  color: var(--sky-deep);
+  font-weight: 700;
+}
+
+.learning-app__progress {
+  height: 5px;
+  margin-top: 6px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #e2e8f0;
+}
+
+.learning-app__progress span {
+  display: block;
+  width: 68%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--sky);
+}
+
+.floating-card {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 13px 15px;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 22px 48px -28px rgba(15, 23, 42, 0.36);
+  backdrop-filter: blur(14px);
+}
+
+.floating-card--goal {
+  bottom: 43px;
+  left: -24px;
+  width: 208px;
+  animation: floatSoft 6s 0.8s ease-in-out infinite;
+}
+
+.floating-card--skill {
+  top: 30px;
+  right: -16px;
+  width: 222px;
+  animation: floatSoft 6.8s 0.3s ease-in-out infinite reverse;
+}
+
+.week-ring {
+  display: grid;
+  width: 45px;
+  height: 45px;
+  flex: none;
+  place-items: center;
+  border-radius: 50%;
+  background: conic-gradient(var(--sky) 0 80%, #e2e8f0 80% 100%);
+}
+
+.week-ring span {
+  display: grid;
+  width: 35px;
+  height: 35px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--sky-deep);
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.floating-card--goal .week-ring span {
+  color: var(--sky-deep);
+}
+
+.floating-card--goal > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.floating-card--goal span,
+.floating-card--skill span {
+  color: #64748b;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.floating-card--goal strong,
+.floating-card--skill strong {
+  color: var(--black);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.floating-card--goal small {
+  color: var(--sky-deep);
+  font-size: 8.5px;
+  font-weight: 600;
+}
+
+.floating-card__icon {
+  display: grid;
+  width: 35px;
+  height: 35px;
+  flex: none;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--sky-soft);
+  color: var(--sky-deep);
+}
+
+.floating-card--skill > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.floating-card__check {
+  display: grid;
+  width: 19px;
+  height: 19px;
+  flex: none;
+  margin-left: auto;
+  place-items: center;
+  border-radius: 50%;
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.hero__mini-chip {
+  position: absolute;
+  right: 12px;
+  bottom: 0;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 13px;
+  border: 1px solid rgba(56, 189, 248, 0.32);
+  border-radius: 999px;
+  background: var(--black);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 600;
+  box-shadow: 0 16px 30px -20px rgba(15, 23, 42, 0.8);
+  animation: floatSoft 7.2s 1s ease-in-out infinite;
+}
+
+.hero__mini-chip svg {
+  color: var(--sky);
+}
+
+@keyframes heroEnter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroVisualIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.975);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes appFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes floatSoft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}

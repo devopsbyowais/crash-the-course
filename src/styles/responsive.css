@@ -1,0 +1,690 @@
+@media (max-width: 1120px) {
+  .hero__inner {
+    gap: 34px;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 4.7vw, 4rem);
+  }
+
+  .course-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .floating-card--goal {
+    left: -12px;
+  }
+
+  .floating-card--skill {
+    right: -6px;
+  }
+
+  .cta-card {
+    padding: 62px 58px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .navbar__inner {
+    height: 80px;
+  }
+
+  .logo__mark {
+    width: 54px;
+    height: 54px;
+    border-radius: 15px;
+  }
+
+  .navbar__nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    border-bottom: 1px solid transparent;
+    background: var(--white);
+    box-shadow: 0 24px 40px -30px rgba(15, 23, 42, 0.28);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      max-height 0.35s ease,
+      opacity 0.22s ease,
+      visibility 0.22s ease,
+      border-color 0.22s ease;
+  }
+
+  .navbar__nav.is-open {
+    max-height: 540px;
+    border-bottom-color: var(--border);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .navbar__links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    padding: 12px 24px 0;
+  }
+
+  .navbar__links a {
+    min-height: 46px;
+    padding: 0 12px;
+    border-radius: 10px;
+    font-size: 14.5px;
+  }
+
+  .navbar__links a::after {
+    display: none;
+  }
+
+  .navbar__links a.is-active {
+    background: var(--sky-mist);
+    color: var(--sky-deep);
+  }
+
+  .navbar__mobile-actions {
+    display: flex;
+    gap: 9px;
+    padding: 14px 24px 22px;
+  }
+
+  .navbar__mobile-actions .btn {
+    flex: 1;
+  }
+
+  .navbar__actions {
+    display: none;
+  }
+
+  .navbar__toggle {
+    display: grid;
+  }
+}
+
+@media (max-width: 960px) {
+  .section {
+    padding: 88px 0;
+  }
+
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding-top: 62px;
+    padding-bottom: 84px;
+  }
+
+  .hero__copy {
+    max-width: 730px;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.35rem, 7.2vw, 4.35rem);
+  }
+
+  .hero__description {
+    max-width: 620px;
+  }
+
+  .hero__visual {
+    width: 100%;
+    max-width: 620px;
+    min-height: 540px;
+    margin: 0 auto;
+  }
+
+  .hero__orbit--one {
+    right: -15px;
+  }
+
+  .cta-card__decoration {
+    width: 42%;
+    opacity: 0.78;
+  }
+
+  .footer__top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 34px;
+  }
+
+  .footer__brand {
+    grid-column: 1 / -1;
+    max-width: 540px;
+  }
+
+  .course-modal__topics ul {
+    grid-template-columns: 1fr;
+  }
+
+  .course-modal__topics li + li {
+    margin-top: 2px;
+  }
+}
+
+@media (max-width: 760px) {
+  .container {
+    padding: 0 22px;
+  }
+
+  .section {
+    padding: 76px 0;
+  }
+
+  .section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    margin-bottom: 36px;
+  }
+
+  .section-heading--center {
+    align-items: center;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(1.95rem, 5vw, 2.45rem);
+  }
+
+  .section-heading p {
+    font-size: 14.5px;
+  }
+
+  .section-heading__actions {
+    width: 100%;
+    padding-bottom: 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 8.4vw, 3.85rem);
+  }
+
+  .hero__description {
+    font-size: 15.5px;
+  }
+
+  .hero__visual {
+    min-height: 500px;
+  }
+
+  .learning-app__video {
+    height: 175px;
+  }
+
+  .cta-card {
+    padding: 48px 38px;
+    border-radius: 24px;
+  }
+
+  .cta-card__decoration {
+    width: 38%;
+  }
+
+  .cta-card__float--spark {
+    display: none;
+  }
+
+  .cta-card h2 {
+    font-size: clamp(2.2rem, 7vw, 3rem);
+  }
+
+  .footer__top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 58px 0 48px;
+  }
+
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .catalog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .course-modal__content {
+    padding: 28px 28px 32px;
+  }
+
+  .course-modal__content h2 {
+    font-size: 27px;
+  }
+
+  .catalog-modal {
+    padding: 34px 28px;
+  }
+
+  .catalog-modal__header h2 {
+    font-size: 28px;
+  }
+
+  .catalog-modal__header {
+    padding-right: 30px;
+  }
+
+  .info-modal {
+    padding: 36px 30px 30px;
+  }
+
+  .info-modal h2 {
+    font-size: 27px;
+  }
+
+  .modal-panel {
+    max-height: calc(100dvh - 36px);
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .section {
+    padding: 70px 0;
+  }
+
+  .navbar__inner {
+    height: 72px;
+  }
+
+  .logo {
+    gap: 10px;
+  }
+
+  .logo__mark {
+    width: 48px;
+    height: 48px;
+    border-radius: 13px;
+  }
+
+  .logo__wordmark {
+    font-size: 20px;
+  }
+
+  .hero__inner {
+    gap: 40px;
+    padding-top: 52px;
+    padding-bottom: 72px;
+  }
+
+  .hero__copy {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero h1 {
+    margin-top: 20px;
+    font-size: clamp(2.72rem, 10.6vw, 3.42rem);
+  }
+
+  .hero__description {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 27px;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+  }
+
+  .hero__assurances {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+  }
+
+  .hero__visual {
+    min-height: 455px;
+  }
+
+  .hero__orbit--one {
+    width: 310px;
+    height: 310px;
+  }
+
+  .learning-app {
+    border-radius: 20px;
+  }
+
+  .learning-app__main {
+    padding: 17px 16px 18px;
+  }
+
+  .learning-app__video {
+    height: 160px;
+  }
+
+  .floating-card--goal {
+    bottom: 26px;
+    left: -5px;
+    width: 193px;
+    padding: 11px 12px;
+  }
+
+  .floating-card--skill {
+    top: 17px;
+    right: -4px;
+    width: 202px;
+    padding: 11px 12px;
+  }
+
+  .hero__mini-chip {
+    right: 4px;
+    bottom: -8px;
+  }
+
+  .course-grid,
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .course-card__media {
+    aspect-ratio: 16 / 8.6;
+  }
+
+  .course-card h3 {
+    min-height: 0;
+    font-size: 18px;
+  }
+
+  .course-card__description {
+    min-height: 0;
+    margin-top: 2px;
+    font-size: 13px;
+    -webkit-line-clamp: 2;
+  }
+
+  .course-card__meta {
+    padding-top: 14px;
+  }
+
+  .feature-card {
+    min-height: 0;
+    padding: 23px;
+  }
+
+  .feature-card__index {
+    top: 20px;
+    right: 20px;
+  }
+
+  .cta-section {
+    padding-bottom: 76px;
+  }
+
+  .cta-card {
+    padding: 43px 28px;
+  }
+
+  .cta-card__decoration {
+    width: 52%;
+    opacity: 0.46;
+  }
+
+  .cta-card__actions {
+    flex-direction: column;
+  }
+
+  .cta-card__actions .btn {
+    width: 100%;
+  }
+
+  .footer__top {
+    gap: 30px;
+    padding: 52px 0 42px;
+  }
+
+  .modal-backdrop {
+    padding: 12px;
+  }
+
+  .modal-panel {
+    max-height: calc(100dvh - 24px);
+    border-radius: 20px;
+  }
+
+  .course-modal__art {
+    height: 200px;
+  }
+
+  .course-modal__content {
+    padding: 25px 23px 29px;
+  }
+
+  .course-modal__content h2 {
+    font-size: 24px;
+  }
+
+  .course-modal__meta {
+    gap: 6px;
+  }
+
+  .course-modal__meta span {
+    padding: 6px 8px;
+    font-size: 10.5px;
+  }
+
+  .course-modal__topics {
+    padding: 18px;
+  }
+
+  .course-modal__footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .course-modal__footer .btn {
+    width: 100%;
+  }
+
+  .catalog-modal {
+    padding: 30px 22px;
+  }
+
+  .catalog-modal__header h2 {
+    font-size: 26px;
+  }
+
+  .modal-close {
+    top: 12px;
+    right: 12px;
+  }
+
+  .info-modal {
+    padding: 34px 24px 27px;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero h1 {
+    font-size: clamp(2.35rem, 10vw, 2.8rem);
+    letter-spacing: -0.058em;
+  }
+
+  .hero__badge {
+    font-size: 11px;
+  }
+
+  .hero__visual {
+    min-height: 410px;
+  }
+
+  .hero__orbit {
+    display: none;
+  }
+
+  .floating-card--goal,
+  .floating-card--skill {
+    display: none;
+  }
+
+  .hero__mini-chip {
+    right: 8px;
+    bottom: -11px;
+  }
+
+  .learning-app__body {
+    grid-template-columns: 43px minmax(0, 1fr);
+  }
+
+  .learning-app__main {
+    padding: 14px 13px 16px;
+  }
+
+  .learning-app__video {
+    height: 138px;
+  }
+
+  .learning-app__heading strong {
+    max-width: 165px;
+    font-size: 12px;
+  }
+
+  .learning-app__heading span {
+    font-size: 8px;
+  }
+
+  .learning-app__heading .learning-app__percent {
+    width: 34px;
+    height: 34px;
+    border-width: 2px;
+    font-size: 8px;
+  }
+
+  .learning-app__code {
+    top: 25px;
+    left: 22px;
+    width: 145px;
+  }
+
+  .learning-app__lesson strong {
+    font-size: 10px;
+  }
+
+  .learning-app__lesson .learning-app__time {
+    font-size: 8px;
+  }
+
+  .learning-app__sidebar {
+    gap: 7px;
+  }
+
+  .learning-app__nav {
+    width: 26px;
+    height: 26px;
+  }
+
+  .course-card__footer .btn {
+    min-height: 38px;
+  }
+
+  .course-card__action .btn {
+    min-height: 40px;
+  }
+
+  .cta-card {
+    padding: 38px 23px;
+  }
+
+  .cta-card h2 {
+    font-size: clamp(2rem, 8.3vw, 2.45rem);
+  }
+
+  .cta-card p {
+    font-size: 14px;
+  }
+
+  .cta-card__decoration {
+    width: 45%;
+    opacity: 0.3;
+  }
+
+  .cta-card__float--book {
+    display: none;
+  }
+
+  .footer__top {
+    grid-template-columns: 1fr;
+    gap: 27px;
+  }
+
+  .footer__brand {
+    grid-column: auto;
+  }
+
+  .footer__column h3 {
+    margin-bottom: 14px;
+  }
+
+  .footer__column ul {
+    gap: 9px;
+  }
+
+  .modal-panel {
+    border-radius: 18px;
+  }
+
+  .course-modal__art {
+    height: 178px;
+  }
+
+  .course-modal__content {
+    padding: 23px 19px 26px;
+  }
+
+  .course-modal__content h2 {
+    font-size: 22px;
+  }
+
+  .course-modal__description {
+    font-size: 13px;
+  }
+
+  .course-modal__topics {
+    padding: 16px;
+  }
+
+  .catalog-modal {
+    padding: 28px 17px;
+  }
+
+  .catalog-modal__header {
+    padding-right: 24px;
+  }
+
+  .catalog-modal__header h2 {
+    font-size: 24px;
+  }
+
+  .info-modal {
+    padding: 32px 20px 24px;
+  }
+
+  .info-modal h2 {
+    font-size: 24px;
+  }
+
+  .modal-close {
+    width: 35px;
+    height: 35px;
+  }
+}

@@ -1,0 +1,126 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.navbar.is-scrolled {
+  border-bottom-color: var(--border);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 8px 26px -24px rgba(15, 23, 42, 0.4);
+}
+
+.navbar__inner {
+  display: flex;
+  height: 88px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.navbar__brand {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.navbar__nav {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.navbar__links a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 13px;
+  border-radius: 9px;
+  color: #475569;
+  font-size: 13.5px;
+  font-weight: 600;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.navbar__links a::after {
+  position: absolute;
+  right: 13px;
+  bottom: 5px;
+  left: 13px;
+  height: 2px;
+  border-radius: 99px;
+  background: var(--sky);
+  content: '';
+  opacity: 0;
+  transform: scaleX(0.45);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.navbar__links a:hover {
+  background: var(--sky-mist);
+  color: var(--black);
+}
+
+.navbar__links a.is-active {
+  color: var(--black);
+}
+
+.navbar__links a.is-active::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.navbar__actions {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar__actions .btn--ghost {
+  min-width: 66px;
+}
+
+.navbar__mobile-actions {
+  display: none;
+}
+
+.navbar__toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--white);
+  color: var(--black);
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.navbar__toggle:hover {
+  border-color: #7dd3fc;
+  background: var(--sky-mist);
+}
