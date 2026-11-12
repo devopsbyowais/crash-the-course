@@ -1,8 +1,10 @@
-import { ArrowUpRight, BookOpen, Clock, Mail, MessageCircle, Star } from 'lucide-react';
+import { ArrowUpRight, BookOpen, Clock, Mail, MessageCircle, Sparkles, Star } from 'lucide-react';
 import Button from './Button';
 import CourseArt from './CourseArt';
 import {
+  AVAILABILITY,
   getAvailabilityLabel,
+  getAvailabilityTone,
   getEnrollmentContactLink,
   isCourseActive,
 } from '../data/courses';
@@ -17,12 +19,8 @@ export function hasPrice(course) {
 }
 
 export function CourseStatusBadge({ course, className = '' }) {
-  const active = isCourseActive(course);
-
   return (
-    <span
-      className={`course-status ${active ? 'course-status--active' : 'course-status--soon'} ${className}`.trim()}
-    >
+    <span className={`course-status course-status--${getAvailabilityTone(course)} ${className}`.trim()}>
       <span className="course-status__dot" aria-hidden="true" />
       {getAvailabilityLabel(course)}
     </span>
@@ -31,16 +29,18 @@ export function CourseStatusBadge({ course, className = '' }) {
 
 export function CourseJoinButton({ course, className = '' }) {
   if (!isCourseActive(course)) {
+    const comingSoon = course.availabilityStatus === AVAILABILITY.COMING_SOON;
+
     return (
       <Button
         variant="secondary"
         size="sm"
         disabled
-        icon={<Clock size={15} />}
+        icon={comingSoon ? <Sparkles size={15} /> : <Clock size={15} />}
         iconPosition="left"
         className={className}
       >
-        Enrollment Opening Soon
+        {comingSoon ? 'Coming Soon' : 'Enrollment Opening Soon'}
       </Button>
     );
   }

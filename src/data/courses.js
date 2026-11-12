@@ -1,15 +1,17 @@
 // All course content lives in this file so it stays easy to update.
 //
 // Per course:
-//   availabilityStatus - 'active' (accepting students) or 'opening_soon'.
-//                        The default for a new course is 'opening_soon'.
+//   availabilityStatus - 'active' (accepting students), 'opening_soon'
+//                        (enrollment opens soon) or 'coming_soon' (still in
+//                        the pipeline). The default for a new course is
+//                        'opening_soon'.
 //   whatsappGroupLink  - the course's own WhatsApp group invitation link.
 //                        Leave it as an empty string until the real invite
 //                        URL is available. No fake links are generated.
 //
 // Active courses show a "Join Now" button that opens their WhatsApp group.
-// Courses without a link fall back to a disabled "Contact for Enrollment"
-// button, and courses marked 'opening_soon' cannot be joined at all.
+// Courses without a link fall back to a "Contact for Enrollment" button, and
+// courses marked 'opening_soon' or 'coming_soon' cannot be joined at all.
 //
 // Optional fields: 'lessons', 'rating' and 'price' may be null while a course
 // is being prepared. Missing values are hidden from the interface instead of
@@ -22,21 +24,36 @@
 export const AVAILABILITY = {
   ACTIVE: 'active',
   OPENING_SOON: 'opening_soon',
+  COMING_SOON: 'coming_soon',
 };
 
 export const availabilityLabels = {
   [AVAILABILITY.ACTIVE]: 'Active',
   [AVAILABILITY.OPENING_SOON]: 'Enrollment Opening Soon',
+  [AVAILABILITY.COMING_SOON]: 'Coming Soon',
 };
+
+// Visual tones used by the status badges and their buttons.
+export const availabilityTones = {
+  [AVAILABILITY.ACTIVE]: 'active',
+  [AVAILABILITY.OPENING_SOON]: 'opening-soon',
+  [AVAILABILITY.COMING_SOON]: 'coming-soon',
+};
+
+export function getAvailabilityTone(course) {
+  return availabilityTones[course?.availabilityStatus] || availabilityTones[AVAILABILITY.OPENING_SOON];
+}
 
 export function isCourseActive(course) {
   return course?.availabilityStatus === AVAILABILITY.ACTIVE;
 }
 
+export function isCourseComingSoon(course) {
+  return course?.availabilityStatus === AVAILABILITY.COMING_SOON;
+}
+
 export function getAvailabilityLabel(course) {
-  return isCourseActive(course)
-    ? availabilityLabels[AVAILABILITY.ACTIVE]
-    : availabilityLabels[AVAILABILITY.OPENING_SOON];
+  return availabilityLabels[course?.availabilityStatus] || availabilityLabels[AVAILABILITY.OPENING_SOON];
 }
 
 // Fallback contact used when an active course has no WhatsApp group link yet.
@@ -46,6 +63,75 @@ export function getEnrollmentContactLink(course) {
 }
 
 export const courses = [
+  {
+    id: 'shopify-local-international',
+    title: 'Shopify Local & International – Basic To Advanced Course',
+    shortDescription:
+      'Learn Basic to Advanced E-commerce skills, and start your online business globally.',
+    description:
+      '🚀 TURN YOUR IDEAS INTO A SUCCESSFUL ONLINE BUSINESS WITH SHOPIFY!\n\nReady to enter the world of E-commerce? Take your first step towards becoming a confident online entrepreneur with our Shopify Local & International Basic to Advanced Course!\n\nMaster the art of building professional Shopify stores, discovering winning products, finding trusted suppliers, managing orders, and creating effective sales strategies. From launching your first local store to exploring international markets, you\'ll gain practical, industry-focused knowledge to build and grow your E-commerce business.\n\n🔥 Learn. Launch. Market. Scale. Your E-commerce Journey Starts Here!',
+    summary:
+      'Learn Basic to Advanced E-commerce skills, and start your online business globally.',
+    category: 'E-Commerce & Shopify',
+    categoryShort: 'E-Commerce & Shopify',
+    level: 'Beginner to Advanced',
+    duration: '16 Hours',
+    lessons: 8,
+    rating: 4.8,
+    price: null,
+    whatsappGroupLink: '',
+    availabilityStatus: 'active',
+    art: 'shopify',
+    featured: false,
+    closingHeading: 'Your Transformation Starts Here!',
+    closingText:
+      'Whether you\'re a complete beginner or looking to advance your E-commerce skills, this course provides a step-by-step learning journey to help you build, launch, manage, and scale your own online business.',
+    closingStatement:
+      'Learn. Launch. Market. Scale. Your E-commerce Journey Starts Here!',
+    enrollmentNote:
+      'This course is open. Contact us for enrollment details and WhatsApp group information.',
+    topics: [
+      'Shopify Store Creation & Professional Designing',
+      'Complete Store Management',
+      'Winning Product Hunting & Market Research',
+      'Product Sourcing & Supplier Management',
+      'Local Shopify Business Strategies',
+      'International Shopify & Dropshipping',
+      'Meta (Facebook & Instagram) Marketing',
+      'TikTok Marketing & Advertising',
+      'Google Ads & Customer Acquisition',
+    ],
+  },
+  {
+    id: 'saas-entrepreneurship',
+    title: 'SaaS Entrepreneurship – Turn Free Software Into Big Opportunities!',
+    shortDescription:
+      'Turn free, open-source software from GitHub into digital products, online services, and real income opportunities.',
+    description:
+      'Think you need thousands of dollars to enter the software business? Think again! Discover how ordinary software engineers and beginners can use free, open-source software from GitHub to create valuable digital products, offer online services, and build new income opportunities.\n\nLearn how SaaS businesses work, how free tools can help you get started, how software products make money, and how individuals can turn technical skills into opportunities in the global market.',
+    category: 'SaaS Entrepreneurship',
+    categoryShort: 'SaaS Entrepreneurship',
+    level: 'Beginner',
+    duration: '16 Hours',
+    lessons: null,
+    rating: null,
+    price: null,
+    whatsappGroupLink: '',
+    availabilityStatus: 'active',
+    art: 'saas',
+    featured: false,
+    closingStatement:
+      'No huge investment. No expensive software. Just skills, smart ideas, and endless opportunities!',
+    topics: [
+      'How SaaS businesses work and make money.',
+      'Finding free and open-source software on GitHub.',
+      'Turning existing software into useful business solutions.',
+      'Exploring software licensing and commercial use.',
+      'Finding clients and selling software services.',
+      'Understanding subscriptions and recurring income.',
+      'Exploring ways to earn in the international market.',
+    ],
+  },
   {
     id: 'full-stack-web-development',
     title: 'Full-Stack Web Development Bootcamp',
@@ -147,66 +233,6 @@ export const courses = [
     topics: ['User research and journey mapping', 'Wireframes and interface systems', 'Prototyping and usability testing'],
   },
   {
-    id: 'startup-fundamentals',
-    title: 'Startup Fundamentals: Idea to Launch',
-    shortDescription:
-      'Turn an early idea into a validated offer with a clear path to your first customers.',
-    description:
-      'Move from assumption to evidence using practical frameworks for customer discovery, positioning, validation, and launch. Build the confidence to test your idea in the real world before investing heavily in it.',
-    category: 'Business & Entrepreneurship',
-    categoryShort: 'Business',
-    level: 'Beginner',
-    duration: '16 hours',
-    lessons: 58,
-    rating: 4.7,
-    price: 49.99,
-    whatsappGroupLink: '',
-    availabilityStatus: 'opening_soon',
-    art: 'business',
-    featured: false,
-    topics: ['Customer discovery interviews', 'Value proposition design', 'Validation and launch planning'],
-  },
-  {
-    id: 'python-data-analysis',
-    title: 'Python for Data Analysis',
-    shortDescription:
-      'Clean, explore, and communicate data with Python, pandas, and clear visual stories.',
-    description:
-      'Build a practical data workflow from raw files to useful insight. Learn Python fundamentals, data cleaning with pandas, exploratory analysis, and visualization techniques that make your findings easy to understand.',
-    category: 'Artificial Intelligence & Data Science',
-    categoryShort: 'AI & Data Science',
-    level: 'Beginner',
-    duration: '22 hours',
-    lessons: 74,
-    rating: 4.8,
-    price: 64.99,
-    whatsappGroupLink: '',
-    availabilityStatus: 'opening_soon',
-    art: 'data',
-    featured: false,
-    topics: ['Python and pandas essentials', 'Data cleaning and exploration', 'Visualization and insight storytelling'],
-  },
-  {
-    id: 'brand-identity-design-lab',
-    title: 'Brand Identity Design Lab',
-    shortDescription:
-      'Create distinctive brand systems with thoughtful strategy, typography, and visual language.',
-    description:
-      'Go beyond a logo and build a cohesive brand identity. Work through positioning, moodboards, type and color systems, and presentation while developing a complete identity project from concept to delivery.',
-    category: 'Design & Creativity',
-    categoryShort: 'Design',
-    level: 'Intermediate',
-    duration: '14 hours',
-    lessons: 46,
-    rating: 4.8,
-    price: 54.99,
-    whatsappGroupLink: '',
-    availabilityStatus: 'opening_soon',
-    art: 'brand',
-    featured: false,
-    topics: ['Brand strategy and positioning', 'Visual identity systems', 'Presenting a complete brand kit'],
-  },
-  {
     id: 'javascript-essentials',
     title: 'JavaScript Essentials: Zero to Fluent',
     shortDescription:
@@ -227,6 +253,66 @@ export const courses = [
     topics: ['Core JavaScript syntax', 'DOM interaction and events', 'Practical coding challenges'],
   },
   {
+    id: 'startup-fundamentals',
+    title: 'Startup Fundamentals: Idea to Launch',
+    shortDescription:
+      'Turn an early idea into a validated offer with a clear path to your first customers.',
+    description:
+      'Move from assumption to evidence using practical frameworks for customer discovery, positioning, validation, and launch. Build the confidence to test your idea in the real world before investing heavily in it.',
+    category: 'Business & Entrepreneurship',
+    categoryShort: 'Business',
+    level: 'Beginner',
+    duration: '16 hours',
+    lessons: 58,
+    rating: 4.7,
+    price: 49.99,
+    whatsappGroupLink: '',
+    availabilityStatus: 'coming_soon',
+    art: 'business',
+    featured: false,
+    topics: ['Customer discovery interviews', 'Value proposition design', 'Validation and launch planning'],
+  },
+  {
+    id: 'python-data-analysis',
+    title: 'Python for Data Analysis',
+    shortDescription:
+      'Clean, explore, and communicate data with Python, pandas, and clear visual stories.',
+    description:
+      'Build a practical data workflow from raw files to useful insight. Learn Python fundamentals, data cleaning with pandas, exploratory analysis, and visualization techniques that make your findings easy to understand.',
+    category: 'Artificial Intelligence & Data Science',
+    categoryShort: 'AI & Data Science',
+    level: 'Beginner',
+    duration: '22 hours',
+    lessons: 74,
+    rating: 4.8,
+    price: 64.99,
+    whatsappGroupLink: '',
+    availabilityStatus: 'coming_soon',
+    art: 'data',
+    featured: false,
+    topics: ['Python and pandas essentials', 'Data cleaning and exploration', 'Visualization and insight storytelling'],
+  },
+  {
+    id: 'brand-identity-design-lab',
+    title: 'Brand Identity Design Lab',
+    shortDescription:
+      'Create distinctive brand systems with thoughtful strategy, typography, and visual language.',
+    description:
+      'Go beyond a logo and build a cohesive brand identity. Work through positioning, moodboards, type and color systems, and presentation while developing a complete identity project from concept to delivery.',
+    category: 'Design & Creativity',
+    categoryShort: 'Design',
+    level: 'Intermediate',
+    duration: '14 hours',
+    lessons: 46,
+    rating: 4.8,
+    price: 54.99,
+    whatsappGroupLink: '',
+    availabilityStatus: 'coming_soon',
+    art: 'brand',
+    featured: false,
+    topics: ['Brand strategy and positioning', 'Visual identity systems', 'Presenting a complete brand kit'],
+  },
+  {
     id: 'cloud-security-foundations',
     title: 'Cloud Security Foundations',
     shortDescription:
@@ -241,7 +327,7 @@ export const courses = [
     rating: 4.7,
     price: 64.99,
     whatsappGroupLink: '',
-    availabilityStatus: 'opening_soon',
+    availabilityStatus: 'coming_soon',
     art: 'cyber',
     featured: false,
     topics: ['Cloud security fundamentals', 'Identity and access controls', 'Monitoring and response basics'],
@@ -261,7 +347,7 @@ export const courses = [
     rating: 4.6,
     price: 39.99,
     whatsappGroupLink: '',
-    availabilityStatus: 'opening_soon',
+    availabilityStatus: 'coming_soon',
     art: 'marketing',
     featured: false,
     topics: ['Audience-first content planning', 'Email campaigns that convert', 'Testing and measuring growth'],
@@ -281,79 +367,10 @@ export const courses = [
     rating: 4.7,
     price: 57.99,
     whatsappGroupLink: '',
-    availabilityStatus: 'opening_soon',
+    availabilityStatus: 'coming_soon',
     art: 'business',
     featured: false,
     topics: ['Rapid idea validation', 'Lean experiments and feedback', 'Launch and first-customer planning'],
-  },
-  {
-    id: 'saas-entrepreneurship',
-    title: 'SaaS Entrepreneurship – Turn Free Software Into Big Opportunities!',
-    shortDescription:
-      'Turn free, open-source software from GitHub into digital products, online services, and real income opportunities.',
-    description:
-      'Think you need thousands of dollars to enter the software business? Think again! Discover how ordinary software engineers and beginners can use free, open-source software from GitHub to create valuable digital products, offer online services, and build new income opportunities.\n\nLearn how SaaS businesses work, how free tools can help you get started, how software products make money, and how individuals can turn technical skills into opportunities in the global market.',
-    category: 'SaaS Entrepreneurship',
-    categoryShort: 'SaaS Entrepreneurship',
-    level: 'Beginner',
-    duration: '16 Hours',
-    lessons: null,
-    rating: null,
-    price: null,
-    whatsappGroupLink: '',
-    availabilityStatus: 'active',
-    art: 'saas',
-    featured: false,
-    closingStatement:
-      'No huge investment. No expensive software. Just skills, smart ideas, and endless opportunities!',
-    topics: [
-      'How SaaS businesses work and make money.',
-      'Finding free and open-source software on GitHub.',
-      'Turning existing software into useful business solutions.',
-      'Exploring software licensing and commercial use.',
-      'Finding clients and selling software services.',
-      'Understanding subscriptions and recurring income.',
-      'Exploring ways to earn in the international market.',
-    ],
-  },
-  {
-    id: 'shopify-local-international',
-    title: 'Shopify Local & International – Basic To Advanced Course',
-    shortDescription:
-      'Learn Basic to Advanced E-commerce skills, and start your online business globally.',
-    description:
-      '🚀 TURN YOUR IDEAS INTO A SUCCESSFUL ONLINE BUSINESS WITH SHOPIFY!\n\nReady to enter the world of E-commerce? Take your first step towards becoming a confident online entrepreneur with our Shopify Local & International Basic to Advanced Course!\n\nMaster the art of building professional Shopify stores, discovering winning products, finding trusted suppliers, managing orders, and creating effective sales strategies. From launching your first local store to exploring international markets, you\'ll gain practical, industry-focused knowledge to build and grow your E-commerce business.\n\n🔥 Learn. Launch. Market. Scale. Your E-commerce Journey Starts Here!',
-    summary:
-      'Learn Basic to Advanced E-commerce skills, and start your online business globally.',
-    category: 'E-Commerce & Shopify',
-    categoryShort: 'E-Commerce & Shopify',
-    level: 'Beginner to Advanced',
-    duration: '16 Hours',
-    lessons: 8,
-    rating: 4.8,
-    price: null,
-    whatsappGroupLink: '',
-    availabilityStatus: 'active',
-    art: 'shopify',
-    featured: false,
-    closingHeading: 'Your Transformation Starts Here!',
-    closingText:
-      'Whether you\'re a complete beginner or looking to advance your E-commerce skills, this course provides a step-by-step learning journey to help you build, launch, manage, and scale your own online business.',
-    closingStatement:
-      'Learn. Launch. Market. Scale. Your E-commerce Journey Starts Here!',
-    enrollmentNote:
-      'This course is open. Contact us for enrollment details and WhatsApp group information.',
-    topics: [
-      'Shopify Store Creation & Professional Designing',
-      'Complete Store Management',
-      'Winning Product Hunting & Market Research',
-      'Product Sourcing & Supplier Management',
-      'Local Shopify Business Strategies',
-      'International Shopify & Dropshipping',
-      'Meta (Facebook & Instagram) Marketing',
-      'TikTok Marketing & Advertising',
-      'Google Ads & Customer Acquisition',
-    ],
   },
 ];
 
@@ -361,4 +378,8 @@ export const featuredCourses = courses.filter((course) => course.featured);
 
 export const activeCourses = courses.filter((course) => isCourseActive(course));
 
-export const openingSoonCourses = courses.filter((course) => !isCourseActive(course));
+export const openingSoonCourses = courses.filter(
+  (course) => course.availabilityStatus === AVAILABILITY.OPENING_SOON,
+);
+
+export const comingSoonCourses = courses.filter((course) => isCourseComingSoon(course));

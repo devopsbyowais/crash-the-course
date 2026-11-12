@@ -3,7 +3,11 @@ import Button from './Button';
 import CourseArt from './CourseArt';
 import Modal from './Modal';
 import { CourseStatusBadge, formatPrice, hasPrice } from './CourseCard';
-import { getEnrollmentContactLink, isCourseActive } from '../data/courses';
+import {
+  AVAILABILITY,
+  getEnrollmentContactLink,
+  isCourseActive,
+} from '../data/courses';
 
 function descriptionParagraphs(description) {
   return String(description || '')
@@ -18,6 +22,7 @@ export default function CourseModal({ course, onClose }) {
   const hasRating = course.rating !== null && course.rating !== undefined;
   const hasLessons = course.lessons !== null && course.lessons !== undefined;
   const priced = hasPrice(course);
+  const comingSoon = course.availabilityStatus === AVAILABILITY.COMING_SOON;
   const outcomes = course.topics || course.learningOutcomes || [];
 
   return (
@@ -124,9 +129,15 @@ export default function CourseModal({ course, onClose }) {
             <strong className={priced ? '' : 'is-custom'}>{formatPrice(course.price)}</strong>
           </div>
           {!active ? (
-            <Button variant="secondary" disabled>
-              Enrollment Opening Soon
-            </Button>
+            comingSoon ? (
+              <Button variant="secondary" disabled icon={<Sparkles size={18} />}>
+                Coming Soon
+              </Button>
+            ) : (
+              <Button variant="secondary" disabled>
+                Enrollment Opening Soon
+              </Button>
+            )
           ) : hasWhatsAppGroup ? (
             <Button
               as="a"
@@ -151,7 +162,9 @@ export default function CourseModal({ course, onClose }) {
         <p className="course-modal__note">
           {course.enrollmentNote ||
             (!active
-              ? 'Enrollment for this course opens soon. Join the course WhatsApp group to stay updated.'
+              ? comingSoon
+                ? 'This course is still in the pipeline. Join the course WhatsApp group to be notified when it launches.'
+                : 'Enrollment for this course opens soon. Join the course WhatsApp group to stay updated.'
               : hasWhatsAppGroup
                 ? 'Join the WhatsApp group for course updates and enrollment details.'
                 : 'This course is open. Contact us and we will share the WhatsApp group and enrollment details.')}
