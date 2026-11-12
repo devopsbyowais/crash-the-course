@@ -73,9 +73,18 @@ availabilityStatus: 'active',       // accepting students
 availabilityStatus: 'opening_soon', // not open yet (the default for new courses)
 ```
 
-- `active` courses show a green **Active** badge and a **Join Now** button.
-- `opening_soon` courses show an amber **Enrollment Opening Soon** badge and a disabled
-  **Enrollment Opening Soon** button, so they cannot be joined.
+- `active` courses show a green badge and a **Join Now** button.
+- `opening_soon` courses show an amber badge and a disabled **Enrollment Opening Soon**
+  button, so they cannot be joined.
+- `coming_soon` courses show a sky-blue badge and a disabled **Coming Soon** button.
+
+A course can override its visible badge text without changing the internal status, for example
+an active course shown as **Slots Available**:
+
+```js
+availabilityStatus: 'active',
+availabilityLabel: 'Slots Available',
+```
 
 All active and upcoming courses are listed together on the Explore Courses page — the status
 badge on each card is the only indication of availability.
