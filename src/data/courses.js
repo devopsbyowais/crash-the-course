@@ -20,6 +20,9 @@
 // is shown as a highlighted closing line in the course modal. 'summary',
 // 'closingHeading', 'closingText' and 'enrollmentNote' are optional too and
 // simply add a lead line, a closing block or a custom enrollment note.
+// 'availabilityLabel' overrides the visible badge text without changing the
+// course's availabilityStatus (e.g. an active course shown as
+// "Slots Available").
 
 export const AVAILABILITY = {
   ACTIVE: 'active',
@@ -53,6 +56,10 @@ export function isCourseComingSoon(course) {
 }
 
 export function getAvailabilityLabel(course) {
+  // A course may override the visible badge text (for example "Slots
+  // Available") while keeping its internal status untouched.
+  if (course?.availabilityLabel) return course.availabilityLabel;
+
   return availabilityLabels[course?.availabilityStatus] || availabilityLabels[AVAILABILITY.OPENING_SOON];
 }
 
@@ -81,6 +88,7 @@ export const courses = [
     price: null,
     whatsappGroupLink: '',
     availabilityStatus: 'active',
+    availabilityLabel: 'Slots Available',
     art: 'shopify',
     featured: false,
     closingHeading: 'Your Transformation Starts Here!',
@@ -118,6 +126,7 @@ export const courses = [
     price: null,
     whatsappGroupLink: '',
     availabilityStatus: 'active',
+    availabilityLabel: 'Slots Available',
     art: 'saas',
     featured: false,
     closingStatement:
