@@ -76,7 +76,6 @@ export const infoTopics = {
           '- Email Address',
           '- Phone Number',
           '- Selected Course',
-          'This information is submitted through our website registration form and stored in the relevant course-specific Google Sheet.',
         ],
       },
       {
@@ -89,20 +88,6 @@ export const infoTopics = {
           '- Communicate important information about course webinars.',
           '- Maintain student registration records.',
           'We do not sell or rent student personal information to third parties.',
-        ],
-      },
-      {
-        title: 'Data Storage and Protection',
-        paragraphs: [
-          'Registration information is stored using Google Sheets through Google Apps Script.',
-          'We take reasonable steps to protect registration information and restrict access to authorized personnel.',
-        ],
-      },
-      {
-        title: 'Third-Party Services',
-        paragraphs: [
-          'Our website uses Google Apps Script and Google Sheets to process and store registration information.',
-          'These services may process information according to their respective privacy policies and terms.',
         ],
       },
       {
