@@ -27,6 +27,10 @@
 // 'enrollmentCourse' marks a course as open for registration and holds the
 // exact course name that is sent to Google Sheets (it must match the name the
 // Apps Script uses to pick the right spreadsheet).
+//
+// 'mock' marks an informational course that is not open for registration yet.
+// Mock courses are listed after the enrollment courses and never open the
+// registration form.
 
 export const AVAILABILITY = {
   ACTIVE: 'active',
@@ -379,13 +383,146 @@ export const courses = [
     featured: false,
     topics: ['Rapid idea validation', 'Lean experiments and feedback', 'Launch and first-customer planning'],
   },
+  {
+    id: 'ai-automation-for-business',
+    title: 'AI Automation for Business',
+    shortDescription:
+      'Learn how to automate business operations using AI tools, workflows, and intelligent automation systems.',
+    description:
+      'Learn how to automate business operations using AI tools, workflows, and intelligent automation systems.',
+    category: 'Artificial Intelligence & Data Science',
+    categoryShort: 'AI & Automation',
+    level: 'Beginner to Intermediate',
+    duration: '16 Hours',
+    lessons: null,
+    rating: null,
+    price: null,
+    whatsappGroupLink: '',
+    availabilityStatus: 'opening_soon',
+    art: 'ai',
+    featured: false,
+    mock: true,
+    topics: [],
+  },
+  {
+    id: 'digital-marketing-growth',
+    title: 'Digital Marketing & Growth',
+    shortDescription:
+      'Learn digital marketing fundamentals, social media strategies, content marketing, and techniques for growing online businesses.',
+    description:
+      'Learn digital marketing fundamentals, social media strategies, content marketing, and techniques for growing online businesses.',
+    category: 'Digital Marketing',
+    categoryShort: 'Digital Marketing',
+    level: 'Beginner',
+    duration: '12 Hours',
+    lessons: null,
+    rating: null,
+    price: null,
+    whatsappGroupLink: '',
+    availabilityStatus: 'opening_soon',
+    art: 'marketing',
+    featured: false,
+    mock: true,
+    topics: [],
+  },
+  {
+    id: 'freelancing-client-acquisition',
+    title: 'Freelancing & Client Acquisition',
+    shortDescription:
+      'Learn how to build a freelancing profile, find international clients, create proposals, and develop long-term client relationships.',
+    description:
+      'Learn how to build a freelancing profile, find international clients, create proposals, and develop long-term client relationships.',
+    category: 'Business & Entrepreneurship',
+    categoryShort: 'Freelancing',
+    level: 'Beginner',
+    duration: '14 Hours',
+    lessons: null,
+    rating: null,
+    price: null,
+    whatsappGroupLink: '',
+    availabilityStatus: 'opening_soon',
+    art: 'business',
+    featured: false,
+    mock: true,
+    topics: [],
+  },
+  {
+    id: 'full-stack-web-development-mock',
+    title: 'Full Stack Web Development',
+    shortDescription:
+      'Learn frontend and backend development, build dynamic websites, and understand modern web application development.',
+    description:
+      'Learn frontend and backend development, build dynamic websites, and understand modern web application development.',
+    category: 'Programming & Development',
+    categoryShort: 'Programming',
+    level: 'Beginner to Advanced',
+    duration: '24 Hours',
+    lessons: null,
+    rating: null,
+    price: null,
+    whatsappGroupLink: '',
+    availabilityStatus: 'coming_soon',
+    art: 'web',
+    featured: false,
+    mock: true,
+    topics: [],
+  },
+  {
+    id: 'python-programming-automation',
+    title: 'Python Programming & Automation',
+    shortDescription:
+      'Learn Python programming fundamentals, scripting, automation, and practical programming techniques.',
+    description:
+      'Learn Python programming fundamentals, scripting, automation, and practical programming techniques.',
+    category: 'Artificial Intelligence & Data Science',
+    categoryShort: 'Python',
+    level: 'Beginner',
+    duration: '18 Hours',
+    lessons: null,
+    rating: null,
+    price: null,
+    whatsappGroupLink: '',
+    availabilityStatus: 'coming_soon',
+    art: 'data',
+    featured: false,
+    mock: true,
+    topics: [],
+  },
+  {
+    id: 'ui-ux-design-fundamentals-mock',
+    title: 'UI/UX Design Fundamentals',
+    shortDescription:
+      'Learn user interface design, user experience principles, wireframing, prototyping, and modern design workflows.',
+    description:
+      'Learn user interface design, user experience principles, wireframing, prototyping, and modern design workflows.',
+    category: 'Design & Creativity',
+    categoryShort: 'Design',
+    level: 'Beginner',
+    duration: '14 Hours',
+    lessons: null,
+    rating: null,
+    price: null,
+    whatsappGroupLink: '',
+    availabilityStatus: 'coming_soon',
+    art: 'design',
+    featured: false,
+    mock: true,
+    topics: [],
+  },
 ];
 
 export const featuredCourses = courses.filter((course) => course.featured);
 
-// Courses that can be registered for. They are the ones shown in the course
-// listing and offered in the registration form.
+// Courses that can be registered for. They are the ones offered in the
+// registration form and are always listed first.
 export const enrollmentCourses = courses.filter((course) => course.enrollmentCourse);
+
+// Informational courses that are not open for registration yet. They are
+// listed after the enrollment courses and never open the registration form.
+export const mockCourses = courses.filter((course) => course.mock);
+
+// The course listing: the two enrollment courses first, then the upcoming ones.
+export const listedCourses = [...enrollmentCourses, ...mockCourses];
 
 // Options for the "Select Course" field, in the order they are offered.
 export const enrollmentCourseOptions = [

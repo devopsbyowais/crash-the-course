@@ -67,15 +67,19 @@ export default function CourseCard({ course, onView, compact = false }) {
           >
             {formatPrice(course.price)}
           </span>
-          <Button
-            variant="soft"
-            size="sm"
-            icon={<ArrowUpRight size={16} />}
-            onClick={() => onView(course)}
-            aria-label={`View ${course.title}`}
-          >
-            View Course
-          </Button>
+          {/* Only courses that are open for registration can be opened, so the
+              upcoming courses stay informational. */}
+          {course.enrollmentCourse && (
+            <Button
+              variant="soft"
+              size="sm"
+              icon={<ArrowUpRight size={16} />}
+              onClick={() => onView(course)}
+              aria-label={`View ${course.title}`}
+            >
+              View Course
+            </Button>
+          )}
         </div>
       </div>
     </article>

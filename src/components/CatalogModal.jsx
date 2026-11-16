@@ -1,4 +1,4 @@
-import { enrollmentCourses } from '../data/courses';
+import { listedCourses } from '../data/courses';
 import CourseCard from './CourseCard';
 import Modal from './Modal';
 
@@ -15,11 +15,11 @@ export default function CatalogModal({ onClose, onViewCourse }) {
       </div>
 
       <div className="catalog-modal__count" aria-live="polite">
-        {enrollmentCourses.length} courses shown
+        {listedCourses.length} courses shown
       </div>
 
       <div className="catalog-grid">
-        {enrollmentCourses.map((course) => (
+        {listedCourses.map((course) => (
           <CourseCard key={course.id} course={course} onView={onViewCourse} compact />
         ))}
       </div>

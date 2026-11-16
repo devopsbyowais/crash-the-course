@@ -1,5 +1,5 @@
 import { ArrowRight } from 'lucide-react';
-import { enrollmentCourses } from '../data/courses';
+import { listedCourses } from '../data/courses';
 import Button from './Button';
 import CourseCard from './CourseCard';
 import Reveal from './Reveal';
@@ -52,8 +52,8 @@ export default function FeaturedCourses({ loading, onViewCourse, onViewAll }) {
             </span>
           )}
           {loading
-            ? Array.from({ length: 2 }, (_, index) => <CourseSkeleton key={index} />)
-            : enrollmentCourses.map((course, index) => (
+            ? Array.from({ length: 8 }, (_, index) => <CourseSkeleton key={index} />)
+            : listedCourses.map((course, index) => (
                 <Reveal key={course.id} delay={index * 55} className="course-grid__item">
                   <CourseCard course={course} onView={onViewCourse} />
                 </Reveal>
