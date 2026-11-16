@@ -63,21 +63,67 @@ export const infoTopics = {
     intro: 'We believe learning should feel safe, clear, and respectful of your privacy.',
     sections: [
       {
-        title: 'Information we collect',
+        title: 'Introduction',
         paragraphs: [
-          'Crash the Course does not collect, transmit, or store personal information. There are no forms on this website.',
+          'Crash the Course respects your privacy. This Privacy Policy explains what information we collect when you register for our courses, how we use it, and how we protect it.',
         ],
       },
       {
-        title: 'How information is used',
+        title: 'Information We Collect',
         paragraphs: [
-          'When you select Join Now, you leave this website for a course-specific WhatsApp group. Your use of WhatsApp is governed by WhatsApp\'s own privacy policy.',
+          'When you submit a course registration form, we may collect:',
+          '- Student Name',
+          '- Email Address',
+          '- Phone Number',
+          '- Selected Course',
+          'This information is submitted through our website registration form and stored in the relevant course-specific Google Sheet.',
         ],
       },
       {
-        title: 'Your choices',
+        title: 'How We Use Your Information',
         paragraphs: [
-          'You can browse all course information freely. No registration or personal details are required.',
+          'We use the information you provide to:',
+          '- Process and manage course registration inquiries.',
+          '- Contact students regarding their selected courses.',
+          '- Share course updates and enrollment information.',
+          '- Communicate important information about course webinars.',
+          '- Maintain student registration records.',
+          'We do not sell or rent student personal information to third parties.',
+        ],
+      },
+      {
+        title: 'Data Storage and Protection',
+        paragraphs: [
+          'Registration information is stored using Google Sheets through Google Apps Script.',
+          'We take reasonable steps to protect registration information and restrict access to authorized personnel.',
+        ],
+      },
+      {
+        title: 'Third-Party Services',
+        paragraphs: [
+          'Our website uses Google Apps Script and Google Sheets to process and store registration information.',
+          'These services may process information according to their respective privacy policies and terms.',
+        ],
+      },
+      {
+        title: 'Payments and Refund Policy',
+        paragraphs: [
+          'Any course fees or amounts paid are subject to the applicable course payment and refund terms.',
+          '**Once the relevant course webinar has been completed, the amount paid for that course will be non-refundable.**',
+          'Students should review the applicable course details and payment terms before making payment.',
+        ],
+      },
+      {
+        title: 'Your Privacy',
+        paragraphs: [
+          'We respect your personal information and use it only for legitimate course registration, communication, and administrative purposes.',
+        ],
+      },
+      {
+        title: 'Contact Us',
+        paragraphs: [
+          'For privacy-related questions, contact:',
+          'info@crashthecourse.com',
         ],
       },
     ],
@@ -88,22 +134,84 @@ export const infoTopics = {
     intro: 'A clear overview of the terms that apply when you use Crash the Course.',
     sections: [
       {
-        title: 'Using the platform',
+        title: 'Introduction',
         paragraphs: [
-          'Crash the Course is a course discovery website. Content is provided for learning purposes and should be used responsibly and lawfully.',
-          'Course enrollment is arranged through course-specific WhatsApp groups. This website does not process payments.',
+          'Welcome to Crash the Course.',
+          'By accessing or using our website, submitting a registration form, or enrolling in one of our courses, you agree to these Terms & Conditions.',
+          'Please read them carefully before proceeding.',
         ],
       },
       {
-        title: 'Course content',
+        title: 'Website Usage',
         paragraphs: [
-          'Course descriptions, durations, difficulty levels, and prices are sample data for demonstration purposes and may change as the platform develops.',
+          'Crash the Course provides information about educational courses, learning opportunities, course schedules, and enrollment.',
+          'Users agree to provide accurate information when submitting registration forms and to use the website responsibly and lawfully.',
         ],
       },
       {
-        title: 'Questions',
+        title: 'Course Registration',
         paragraphs: [
-          'If you have questions about these terms, contact info@crashthecourse.com.',
+          'Students can select an available course and submit their details through the online registration form.',
+          'The registration form requests:',
+          '- Student Name',
+          '- Email Address',
+          '- Phone Number',
+          '- Selected Course',
+          'Submitting a registration form represents a registration request or inquiry. It does not automatically guarantee admission or confirm payment.',
+          'Our team may contact students with further course and enrollment details.',
+        ],
+      },
+      {
+        title: 'Course Information',
+        paragraphs: [
+          'We make reasonable efforts to provide accurate course descriptions, durations, difficulty levels, and other course information.',
+          'Course schedules, content, availability, and other details may change when necessary.',
+        ],
+      },
+      {
+        title: 'Payments and Refund Policy',
+        paragraphs: [
+          'Students are responsible for reviewing applicable course fees and payment information before completing enrollment.',
+          '**Important Non-Refundable Policy:**',
+          '**Once the relevant course webinar has been completed, any amount paid for that course will be non-refundable.**',
+          'Students should carefully review the course details and applicable payment terms before making payment.',
+        ],
+      },
+      {
+        title: 'Student Responsibilities',
+        paragraphs: [
+          'Students are expected to:',
+          '- Provide accurate registration information.',
+          '- Follow applicable course guidelines.',
+          '- Respect instructors and other participants.',
+          '- Use learning materials responsibly.',
+          '- Avoid sharing unauthorized course materials.',
+        ],
+      },
+      {
+        title: 'Intellectual Property',
+        paragraphs: [
+          'Website content, branding, logos, course descriptions, and original learning materials belong to their respective owners.',
+          'Users may not reproduce, distribute, or commercially exploit protected materials without appropriate permission.',
+        ],
+      },
+      {
+        title: 'Limitation of Liability',
+        paragraphs: [
+          'Crash the Course makes reasonable efforts to maintain accurate website information and reliable services. However, we cannot guarantee uninterrupted website availability or that all information will remain unchanged.',
+        ],
+      },
+      {
+        title: 'Changes to These Terms',
+        paragraphs: [
+          'We reserve the right to update these Terms & Conditions and Privacy Policy when necessary. Updated versions will be published on our website.',
+        ],
+      },
+      {
+        title: 'Contact Information',
+        paragraphs: [
+          'For questions about these Terms & Conditions, contact:',
+          'info@crashthecourse.com',
         ],
       },
     ],
