@@ -1,11 +1,9 @@
-import { Instagram, Linkedin, Twitter, Youtube } from 'lucide-react';
+import { Instagram, Linkedin } from 'lucide-react';
 import Logo from './Logo';
 
 const socialLinks = [
   { label: 'Instagram', href: 'https://www.instagram.com', icon: Instagram },
   { label: 'LinkedIn', href: 'https://www.linkedin.com', icon: Linkedin },
-  { label: 'YouTube', href: 'https://www.youtube.com', icon: Youtube },
-  { label: 'X', href: 'https://x.com', icon: Twitter },
 ];
 
 const quickLinks = [
