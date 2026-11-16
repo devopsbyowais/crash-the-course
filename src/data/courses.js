@@ -81,7 +81,7 @@ export const courses = [
     shortDescription:
       'Learn Basic to Advanced E-commerce skills, and start your online business globally.',
     description:
-      '🚀 TURN YOUR IDEAS INTO A SUCCESSFUL ONLINE BUSINESS WITH SHOPIFY!\n\nReady to enter the world of E-commerce? Take your first step towards becoming a confident online entrepreneur with our Shopify Local & International Basic to Advanced Course!\n\nMaster the art of building professional Shopify stores, discovering winning products, finding trusted suppliers, managing orders, and creating effective sales strategies. From launching your first local store to exploring international markets, you\'ll gain practical, industry-focused knowledge to build and grow your E-commerce business.\n\n🔥 Learn. Launch. Market. Scale. Your E-commerce Journey Starts Here!',
+      'TURN YOUR IDEAS INTO A SUCCESSFUL ONLINE BUSINESS WITH SHOPIFY!\n\nReady to enter the world of E-commerce? Take your first step towards becoming a confident online entrepreneur with our Shopify Local & International Basic to Advanced Course!\n\nMaster the art of building professional Shopify stores, discovering winning products, finding trusted suppliers, managing orders, and creating effective sales strategies. From launching your first local store to exploring international markets, you\'ll gain practical, industry-focused knowledge to build and grow your E-commerce business.\n\nLearn. Launch. Market. Scale. Your E-commerce Journey Starts Here!',
     summary:
       'Learn Basic to Advanced E-commerce skills, and start your online business globally.',
     category: 'E-Commerce & Shopify',
