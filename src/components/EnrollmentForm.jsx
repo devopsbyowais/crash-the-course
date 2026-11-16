@@ -3,6 +3,7 @@ import { CheckCircle2, Loader2, Send, TriangleAlert } from 'lucide-react';
 import { ENROLLMENT_ENDPOINT } from '../config/enrollment';
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const SCRIPT_ERROR_PATTERN = /error|invalid|failed|cannot|unable/i;
 
 const MESSAGES = {
   confirmed:
@@ -19,8 +20,7 @@ function validate(values) {
   const phone = values.phone.trim();
   const digits = phone.replace(/\D/g, '');
 
-  if (!name) errors.studentName = 'Please enter your full name.';
-  else if (name.length < 2) errors.studentName = 'Please enter your full name.';
+  if (!name || name.length < 2) errors.studentName = 'Please enter your full name.';
 
   if (!email) errors.email = 'Please enter your email address.';
   else if (!EMAIL_PATTERN.test(email)) errors.email = 'Please enter a valid email address.';
@@ -40,7 +40,6 @@ export default function EnrollmentForm({ course, options, onCourseChange, onSubm
   const [message, setMessage] = useState('');
 
   const formRef = useRef(null);
-  const frameRef = useRef(null);
   const submittedRef = useRef(false);
   const timerRef = useRef(null);
   const statusRef = useRef('idle');
@@ -58,19 +57,85 @@ export default function EnrollmentForm({ course, options, onCourseChange, onSubm
     onCourseChange(event.target.value);
   };
 
-  const finish = (nextStatus) => {
+  const finish = (nextStatus, customMessage) => {
     window.clearTimeout(timerRef.current);
     setStatus(nextStatus);
-    setMessage(MESSAGES[nextStatus]);
+    setMessage(customMessage || MESSAGES[nextStatus]);
   };
 
   const handleFrameLoad = () => {
     if (!submittedRef.current) return;
-    // The endpoint answered (Apps Script redirects to its response page), so the
-    // request reached the script and it replied with a result.
-    finish('confirmed');
-    setValues({ studentName: '', email: '', phone: '' });
-    onSubmitted?.();
+    // The fallback transport cannot be read (cross-origin iframe), so we only
+    // know that the endpoint answered - never that the row was written.
+    finish('sent');
+  };
+
+  /**
+   * Fallback transport: a native POST into a hidden iframe. The browser sends
+   * the request without any CORS preflight, so the registration always reaches
+   * the script, but the response cannot be read back.
+   */
+  const submitViaIframe = () => {
+    const hiddenForm = formRef.current;
+    if (!hiddenForm) {
+      finish('error');
+      return;
+    }
+
+    hiddenForm.studentName.value = values.studentName.trim();
+    hiddenForm.email.value = values.email.trim();
+    hiddenForm.phone.value = values.phone.trim();
+    hiddenForm.course.value = course.enrollmentCourse;
+
+    submittedRef.current = true;
+    hiddenForm.submit();
+
+    timerRef.current = window.setTimeout(() => {
+      if (statusRef.current !== 'confirmed') finish('sent');
+    }, 12000);
+  };
+
+  /**
+   * Verified transport: a CORS POST whose response can be read. The Apps
+   * Script answers with the text "Registration successful!" when the student
+   * was written to the matching spreadsheet, and with an error message when
+   * the request could not be processed.
+   */
+  const submitWithVerification = async () => {
+    const body = new URLSearchParams({
+      studentName: values.studentName.trim(),
+      email: values.email.trim(),
+      phone: values.phone.trim(),
+      course: course.enrollmentCourse,
+    });
+
+    try {
+      const response = await fetch(ENROLLMENT_ENDPOINT, {
+        method: 'POST',
+        body,
+        redirect: 'follow',
+      });
+
+      const text = (await response.text()).trim();
+
+      if (!response.ok) {
+        finish('error', `We could not send your registration (server responded with ${response.status}). Please try again.`);
+        return;
+      }
+
+      if (text && SCRIPT_ERROR_PATTERN.test(text)) {
+        finish('error', text);
+        return;
+      }
+
+      finish('confirmed');
+      setValues({ studentName: '', email: '', phone: '' });
+      onSubmitted?.();
+    } catch {
+      // The response could not be read. Deliver the registration through the
+      // hidden iframe instead and be explicit that it was only sent.
+      submitViaIframe();
+    }
   };
 
   const handleSubmit = (event) => {
@@ -95,26 +160,7 @@ export default function EnrollmentForm({ course, options, onCourseChange, onSubm
 
     setStatus('sending');
     setMessage('Sending your registration...');
-
-    // Native POST into the hidden iframe: the browser sends the request to the
-    // Apps Script endpoint without any CORS preflight, so the registration
-    // always reaches the script. The response itself cannot be read from a
-    // cross-origin iframe, so confirmation is based on the endpoint replying.
-    const hiddenForm = formRef.current;
-    if (hiddenForm) {
-      hiddenForm.studentName.value = values.studentName.trim();
-      hiddenForm.email.value = values.email.trim();
-      hiddenForm.phone.value = values.phone.trim();
-      hiddenForm.course.value = course.enrollmentCourse;
-      submittedRef.current = true;
-      hiddenForm.submit();
-    }
-
-    // If the endpoint never replies we say the request was sent, but we never
-    // claim the registration is confirmed.
-    timerRef.current = window.setTimeout(() => {
-      if (statusRef.current !== 'confirmed') finish('sent');
-    }, 12000);
+    submitWithVerification();
   };
 
   const feedbackIcon = {
@@ -254,7 +300,7 @@ export default function EnrollmentForm({ course, options, onCourseChange, onSubm
         </p>
       )}
 
-      {/* Hidden transport: a native POST form targeting an invisible iframe. */}
+      {/* Fallback transport: a native POST form targeting an invisible iframe. */}
       <form
         ref={formRef}
         className="enroll__transport"
@@ -269,7 +315,6 @@ export default function EnrollmentForm({ course, options, onCourseChange, onSubm
         <input type="hidden" name="course" defaultValue="" readOnly />
       </form>
       <iframe
-        ref={frameRef}
         name="enroll-frame"
         title="Enrollment submission"
         className="enroll__frame"
