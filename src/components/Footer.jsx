@@ -76,9 +76,6 @@ export default function Footer({ onSupport }) {
                   <a href={link.href}>{link.label}</a>
                 </li>
               ))}
-              <li>
-                <a href="mailto:info@crashthecourse.com">Contact Us</a>
-              </li>
             </ul>
           </nav>
 
