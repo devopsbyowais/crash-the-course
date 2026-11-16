@@ -2,7 +2,7 @@ import { BarChart3, BookOpen, Check, Clock, Sparkles, Star } from 'lucide-react'
 import CourseArt from './CourseArt';
 import EnrollmentForm from './EnrollmentForm';
 import Modal from './Modal';
-import { CourseStatusBadge, formatPrice, hasPrice } from './CourseCard';
+import { CourseStatusBadge, formatAmount, formatPrice, hasDiscount, hasPrice } from './CourseCard';
 import { enrollmentCourseOptions } from '../data/courses';
 
 function descriptionParagraphs(description) {
@@ -121,7 +121,15 @@ export default function CourseModal({ course, onClose, onCourseChange }) {
                       : 'One-time payment'
                     : 'Course price'}
                 </span>
-                <strong className={priced ? '' : 'is-custom'}>{formatPrice(course.price)}</strong>
+                {hasDiscount(course) && (
+                  <>
+                    <span className="course-modal__price-original">
+                      {formatAmount(course.originalPrice, course.priceCurrency)}
+                    </span>
+                    <span className="course-modal__discount">{course.priceDiscount}</span>
+                  </>
+                )}
+                <strong className={priced ? '' : 'is-custom'}>{formatPrice(course)}</strong>
               </div>
             </div>
           </div>

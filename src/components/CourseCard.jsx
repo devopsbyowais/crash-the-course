@@ -3,13 +3,33 @@ import Button from './Button';
 import CourseArt from './CourseArt';
 import { getAvailabilityLabel, getAvailabilityTone } from '../data/courses';
 
-export function formatPrice(price) {
+export function formatAmount(value, currency) {
+  if (currency && currency !== 'USD') {
+    return `${currency} ${Number(value).toLocaleString('en-US')}`;
+  }
+
+  return `$${Number(value).toFixed(2)}`;
+}
+
+export function formatPrice(course) {
+  const price = course?.price;
+
   if (price === null || price === undefined) return 'Contact for pricing';
-  return price === 'Free' ? 'Free' : `$${Number(price).toFixed(2)}`;
+  if (price === 'Free') return 'Free';
+
+  return formatAmount(price, course.priceCurrency);
 }
 
 export function hasPrice(course) {
   return course.price !== null && course.price !== undefined;
+}
+
+export function hasDiscount(course) {
+  return (
+    course.originalPrice !== null &&
+    course.originalPrice !== undefined &&
+    Boolean(course.priceDiscount)
+  );
 }
 
 export function CourseStatusBadge({ course, className = '' }) {
@@ -60,13 +80,25 @@ export default function CourseCard({ course, onView, compact = false }) {
         </div>
 
         <div className="course-card__footer">
-          <span
-            className={`course-card__price ${course.price === 'Free' ? 'is-free' : ''} ${
-              hasPrice(course) ? '' : 'is-custom'
-            }`.trim()}
-          >
-            {formatPrice(course.price)}
-          </span>
+          {hasDiscount(course) ? (
+            <div className="course-card__pricing">
+              <span className="course-card__price-original">
+                {formatAmount(course.originalPrice, course.priceCurrency)}
+              </span>
+              <span className="course-card__discount">{course.priceDiscount}</span>
+              <span className="course-card__price">
+                {formatPrice(course)}
+              </span>
+            </div>
+          ) : (
+            <span
+              className={`course-card__price ${course.price === 'Free' ? 'is-free' : ''} ${
+                hasPrice(course) ? '' : 'is-custom'
+              }`.trim()}
+            >
+              {formatPrice(course)}
+            </span>
+          )}
           {/* Only courses that are open for registration can be opened, so the
               upcoming courses stay informational. */}
           {course.enrollmentCourse && (

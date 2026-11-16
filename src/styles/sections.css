@@ -248,6 +248,36 @@
   white-space: nowrap;
 }
 
+/* Discounted pricing on the course card */
+.course-card__pricing {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.course-card__price-original {
+  color: var(--muted);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  text-decoration: line-through;
+}
+
+.course-card__discount {
+  display: inline-flex;
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: var(--sky-soft);
+  color: var(--sky-deep);
+  font-size: 9.5px;
+  font-weight: 750;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
 .course-card__footer .btn {
   min-height: 36px;
   padding: 0 12px;

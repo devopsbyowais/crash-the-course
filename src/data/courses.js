@@ -16,7 +16,10 @@
 // Optional fields: 'lessons', 'rating' and 'price' may be null while a course
 // is being prepared. Missing values are hidden from the interface instead of
 // being replaced with invented numbers (the price then reads
-// "Contact for pricing"). 'closingStatement' is optional and, when present,
+// "Contact for pricing"). 'originalPrice' with 'priceDiscount' shows a
+// struck-through original price next to a discount badge, and 'priceCurrency'
+// sets the currency used for the price (PKR shows grouped amounts, the
+// default is dollars). 'closingStatement' is optional and, when present,
 // is shown as a highlighted closing line in the course modal. 'summary',
 // 'closingHeading', 'closingText' and 'enrollmentNote' are optional too and
 // simply add a lead line, a closing block or a custom enrollment note.
@@ -87,7 +90,10 @@ export const courses = [
     duration: '16 Hours',
     lessons: 8,
     rating: 4.8,
-    price: null,
+    price: 10000,
+    originalPrice: 20000,
+    priceDiscount: '50% OFF',
+    priceCurrency: 'PKR',
     whatsappGroupLink: '',
     availabilityStatus: 'active',
     availabilityLabel: 'Slots Available',
