@@ -12,7 +12,7 @@ const socialLinks = [
   },
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com',
+    href: 'https://www.linkedin.com/company/crashthecourse/home/',
     icon: Linkedin,
   },
   {
