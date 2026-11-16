@@ -1,9 +1,27 @@
-import { Instagram, Linkedin } from 'lucide-react';
+import { Facebook, Instagram, Linkedin } from 'lucide-react';
 import Logo from './Logo';
 
+// Facebook page for Crash the Course. No page has been configured yet, so the
+// URL is intentionally empty - add the real page URL here and the icon
+// becomes a live link. Nothing else needs to change.
+const FACEBOOK_PAGE_URL = '';
+
 const socialLinks = [
-  { label: 'Instagram', href: 'https://www.instagram.com', icon: Instagram },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com', icon: Linkedin },
+  {
+    label: 'Instagram',
+    href: 'https://www.instagram.com',
+    icon: Instagram,
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com',
+    icon: Linkedin,
+  },
+  {
+    label: 'Facebook',
+    href: FACEBOOK_PAGE_URL,
+    icon: Facebook,
+  },
 ];
 
 const quickLinks = [
@@ -39,10 +57,10 @@ export default function Footer({ onSupport }) {
               {socialLinks.map(({ label, href, icon: Icon }) => (
                 <a
                   key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  aria-label={`${label} (opens in a new tab)`}
+                  href={href || undefined}
+                  target={href ? '_blank' : undefined}
+                  rel={href ? 'noreferrer noopener' : undefined}
+                  aria-label={href ? `${label} (opens in a new tab)` : label}
                 >
                   <Icon size={18} />
                 </a>
