@@ -360,6 +360,205 @@
   line-height: 1.6;
 }
 
+/* Course modal body: course details beside the registration form */
+.course-modal__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 26px;
+  align-items: start;
+  margin-top: 26px;
+}
+
+.course-modal__details {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.course-modal__details > .course-modal__topics,
+.course-modal__details > .course-modal__closing,
+.course-modal__details > .course-modal__statement,
+.course-modal__details > .course-modal__footer {
+  margin-top: 0;
+}
+
+/* Registration form */
+.enroll {
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--background);
+}
+
+.enroll__title {
+  margin-top: 9px;
+  color: var(--black);
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+}
+
+.enroll__intro {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+.enroll__selected {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 7px;
+  align-items: baseline;
+  margin-top: 14px;
+  padding: 9px 12px;
+  border: 1px solid #bae6fd;
+  border-radius: 12px;
+  background: var(--sky-soft);
+  color: var(--sky-deep);
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.enroll__selected strong {
+  font-weight: 750;
+}
+
+.enroll__form {
+  display: grid;
+  gap: 13px;
+  margin-top: 16px;
+}
+
+.enroll__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.enroll__field label {
+  color: var(--ink-soft);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.enroll__field input,
+.enroll__field select {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 13px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background-color: var(--white);
+  color: var(--black);
+  font-family: inherit;
+  font-size: 13.5px;
+  line-height: 1.4;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.enroll__field select {
+  appearance: none;
+  padding-right: 36px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 13px center;
+  cursor: pointer;
+}
+
+.enroll__field input::placeholder {
+  color: #94a3b8;
+}
+
+.enroll__field input:focus,
+.enroll__field select:focus {
+  border-color: var(--sky);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.22);
+}
+
+.enroll__field input[aria-invalid='true'],
+.enroll__field select[aria-invalid='true'] {
+  border-color: #f87171;
+}
+
+.enroll__error {
+  color: #b91c1c;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.enroll__submit {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.enroll__spinner {
+  animation: enrollSpin 0.9s linear infinite;
+}
+
+@keyframes enrollSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.enroll__feedback {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin-top: 14px;
+  padding: 11px 13px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.enroll__feedback svg {
+  flex: none;
+  margin-top: 1px;
+}
+
+.enroll__feedback--confirmed {
+  background: rgba(22, 163, 74, 0.1);
+  color: #15803d;
+}
+
+.enroll__feedback--sent {
+  background: var(--sky-soft);
+  color: var(--sky-deep);
+}
+
+.enroll__feedback--error {
+  background: rgba(248, 113, 113, 0.12);
+  color: #b91c1c;
+}
+
+/* Hidden transport used to deliver the registration to Google Apps Script */
+.enroll__transport {
+  display: none;
+}
+
+.enroll__frame {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* Catalog modal */
 .catalog-modal {
   padding: 40px;

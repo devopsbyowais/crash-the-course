@@ -1,5 +1,5 @@
 import { ArrowRight } from 'lucide-react';
-import { courses } from '../data/courses';
+import { enrollmentCourses } from '../data/courses';
 import Button from './Button';
 import CourseCard from './CourseCard';
 import Reveal from './Reveal';
@@ -32,7 +32,7 @@ export default function FeaturedCourses({ loading, onViewCourse, onViewAll }) {
             eyebrow="Explore courses"
             id="courses-heading"
             title="Explore Our Courses"
-            description="Every course in one place, each marked with its enrollment status. Active courses can be joined straight from their own WhatsApp group."
+            description="Register for the course you want and our team will get back to you with the enrollment details."
             actions={
               <Button
                 variant="secondary"
@@ -52,8 +52,8 @@ export default function FeaturedCourses({ loading, onViewCourse, onViewAll }) {
             </span>
           )}
           {loading
-            ? Array.from({ length: 4 }, (_, index) => <CourseSkeleton key={index} />)
-            : courses.map((course, index) => (
+            ? Array.from({ length: 2 }, (_, index) => <CourseSkeleton key={index} />)
+            : enrollmentCourses.map((course, index) => (
                 <Reveal key={course.id} delay={index * 55} className="course-grid__item">
                   <CourseCard course={course} onView={onViewCourse} />
                 </Reveal>

@@ -1,13 +1,7 @@
-import { ArrowUpRight, BookOpen, Clock, Mail, MessageCircle, Sparkles, Star } from 'lucide-react';
+import { ArrowUpRight, BookOpen, Clock, Star } from 'lucide-react';
 import Button from './Button';
 import CourseArt from './CourseArt';
-import {
-  AVAILABILITY,
-  getAvailabilityLabel,
-  getAvailabilityTone,
-  getEnrollmentContactLink,
-  isCourseActive,
-} from '../data/courses';
+import { getAvailabilityLabel, getAvailabilityTone } from '../data/courses';
 
 export function formatPrice(price) {
   if (price === null || price === undefined) return 'Contact for pricing';
@@ -24,56 +18,6 @@ export function CourseStatusBadge({ course, className = '' }) {
       <span className="course-status__dot" aria-hidden="true" />
       {getAvailabilityLabel(course)}
     </span>
-  );
-}
-
-export function CourseJoinButton({ course, className = '' }) {
-  if (!isCourseActive(course)) {
-    const comingSoon = course.availabilityStatus === AVAILABILITY.COMING_SOON;
-
-    return (
-      <Button
-        variant="secondary"
-        size="sm"
-        disabled
-        icon={comingSoon ? <Sparkles size={15} /> : <Clock size={15} />}
-        iconPosition="left"
-        className={className}
-      >
-        {comingSoon ? 'Coming Soon' : 'Enrollment Opening Soon'}
-      </Button>
-    );
-  }
-
-  if (!course.whatsappGroupLink) {
-    return (
-      <Button
-        as="a"
-        href={getEnrollmentContactLink(course)}
-        variant="secondary"
-        size="sm"
-        icon={<Mail size={15} />}
-        iconPosition="left"
-        className={className}
-      >
-        Contact for Enrollment
-      </Button>
-    );
-  }
-
-  return (
-    <Button
-      as="a"
-      href={course.whatsappGroupLink}
-      target="_blank"
-      rel="noopener noreferrer"
-      size="sm"
-      icon={<MessageCircle size={15} />}
-      iconPosition="left"
-      className={className}
-    >
-      Join Now
-    </Button>
   );
 }
 
@@ -132,10 +76,6 @@ export default function CourseCard({ course, onView, compact = false }) {
           >
             View Course
           </Button>
-        </div>
-
-        <div className="course-card__action">
-          <CourseJoinButton course={course} />
         </div>
       </div>
     </article>

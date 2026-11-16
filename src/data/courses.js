@@ -23,6 +23,10 @@
 // 'availabilityLabel' overrides the visible badge text without changing the
 // course's availabilityStatus (e.g. an active course shown as
 // "Slots Available").
+//
+// 'enrollmentCourse' marks a course as open for registration and holds the
+// exact course name that is sent to Google Sheets (it must match the name the
+// Apps Script uses to pick the right spreadsheet).
 
 export const AVAILABILITY = {
   ACTIVE: 'active',
@@ -63,12 +67,6 @@ export function getAvailabilityLabel(course) {
   return availabilityLabels[course?.availabilityStatus] || availabilityLabels[AVAILABILITY.OPENING_SOON];
 }
 
-// Fallback contact used when an active course has no WhatsApp group link yet.
-export function getEnrollmentContactLink(course) {
-  const subject = encodeURIComponent(`Enrollment for ${course.title}`);
-  return `mailto:hello@crashthecourse.com?subject=${subject}`;
-}
-
 export const courses = [
   {
     id: 'shopify-local-international',
@@ -89,6 +87,7 @@ export const courses = [
     whatsappGroupLink: '',
     availabilityStatus: 'active',
     availabilityLabel: 'Slots Available',
+    enrollmentCourse: 'Shopify Local & International',
     art: 'shopify',
     featured: false,
     closingHeading: 'Your Transformation Starts Here!',
@@ -96,8 +95,6 @@ export const courses = [
       'Whether you\'re a complete beginner or looking to advance your E-commerce skills, this course provides a step-by-step learning journey to help you build, launch, manage, and scale your own online business.',
     closingStatement:
       'Learn. Launch. Market. Scale. Your E-commerce Journey Starts Here!',
-    enrollmentNote:
-      'This course is open. Contact us for enrollment details and WhatsApp group information.',
     topics: [
       'Shopify Store Creation & Professional Designing',
       'Complete Store Management',
@@ -127,6 +124,7 @@ export const courses = [
     whatsappGroupLink: '',
     availabilityStatus: 'active',
     availabilityLabel: 'Slots Available',
+    enrollmentCourse: 'SaaS Entrepreneurship',
     art: 'saas',
     featured: false,
     closingStatement:
@@ -384,6 +382,16 @@ export const courses = [
 ];
 
 export const featuredCourses = courses.filter((course) => course.featured);
+
+// Courses that can be registered for. They are the ones shown in the course
+// listing and offered in the registration form.
+export const enrollmentCourses = courses.filter((course) => course.enrollmentCourse);
+
+// Options for the "Select Course" field, in the order they are offered.
+export const enrollmentCourseOptions = [
+  'SaaS Entrepreneurship',
+  'Shopify Local & International',
+];
 
 export const activeCourses = courses.filter((course) => isCourseActive(course));
 

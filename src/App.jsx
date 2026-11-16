@@ -8,6 +8,7 @@ import Hero from './components/Hero';
 import InfoModal from './components/InfoModal';
 import Navbar from './components/Navbar';
 import WhyChoose from './components/WhyChoose';
+import { enrollmentCourses } from './data/courses';
 
 function scrollToSection(id) {
   const section = document.getElementById(id);
@@ -35,6 +36,13 @@ export default function App() {
     setSelectedCourse(course);
   };
 
+  // The registration form lets students switch course, so the modal follows
+  // the selected enrollment course.
+  const changeEnrollmentCourse = (courseName) => {
+    const next = enrollmentCourses.find((course) => course.enrollmentCourse === courseName);
+    if (next) setSelectedCourse(next);
+  };
+
   return (
     <>
       <Navbar />
@@ -59,6 +67,7 @@ export default function App() {
         <CourseModal
           course={selectedCourse}
           onClose={() => setSelectedCourse(null)}
+          onCourseChange={changeEnrollmentCourse}
         />
       )}
 

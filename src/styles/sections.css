@@ -258,15 +258,6 @@
   transform: translate(2px, -2px);
 }
 
-.course-card__action {
-  display: flex;
-  margin-top: 12px;
-}
-
-.course-card__action .btn {
-  width: 100%;
-}
-
 /* Compact card used inside the catalog modal */
 .course-card--compact .course-card__media {
   aspect-ratio: 16 / 7;

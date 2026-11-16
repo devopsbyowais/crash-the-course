@@ -1,13 +1,9 @@
-import { BarChart3, BookOpen, Check, Clock, Mail, MessageCircle, Sparkles, Star } from 'lucide-react';
-import Button from './Button';
+import { BarChart3, BookOpen, Check, Clock, Sparkles, Star } from 'lucide-react';
 import CourseArt from './CourseArt';
+import EnrollmentForm from './EnrollmentForm';
 import Modal from './Modal';
 import { CourseStatusBadge, formatPrice, hasPrice } from './CourseCard';
-import {
-  AVAILABILITY,
-  getEnrollmentContactLink,
-  isCourseActive,
-} from '../data/courses';
+import { enrollmentCourseOptions } from '../data/courses';
 
 function descriptionParagraphs(description) {
   return String(description || '')
@@ -16,13 +12,10 @@ function descriptionParagraphs(description) {
     .filter(Boolean);
 }
 
-export default function CourseModal({ course, onClose }) {
-  const active = isCourseActive(course);
-  const hasWhatsAppGroup = Boolean(course.whatsappGroupLink);
+export default function CourseModal({ course, onClose, onCourseChange }) {
   const hasRating = course.rating !== null && course.rating !== undefined;
   const hasLessons = course.lessons !== null && course.lessons !== undefined;
   const priced = hasPrice(course);
-  const comingSoon = course.availabilityStatus === AVAILABILITY.COMING_SOON;
   const outcomes = course.topics || course.learningOutcomes || [];
 
   return (
@@ -85,90 +78,60 @@ export default function CourseModal({ course, onClose }) {
           )}
         </div>
 
-        <div className="course-modal__topics">
-          <h3>What you'll learn</h3>
-          <ul>
-            {outcomes.map((topic) => (
-              <li key={topic}>
+        <div className="course-modal__body">
+          <div className="course-modal__details">
+            <div className="course-modal__topics">
+              <h3>What you'll learn</h3>
+              <ul>
+                {outcomes.map((topic) => (
+                  <li key={topic}>
+                    <span>
+                      <Check size={13} />
+                    </span>
+                    {topic}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {(course.closingHeading || course.closingText) && (
+              <div className="course-modal__closing">
+                {course.closingHeading && (
+                  <h3 className="course-modal__closing-title">{course.closingHeading}</h3>
+                )}
+                {course.closingText && (
+                  <p className="course-modal__closing-text">{course.closingText}</p>
+                )}
+              </div>
+            )}
+
+            {course.closingStatement && (
+              <p className="course-modal__statement">
+                <Sparkles size={15} />
+                {course.closingStatement}
+              </p>
+            )}
+
+            <div className="course-modal__footer">
+              <div className="course-modal__price">
                 <span>
-                  <Check size={13} />
+                  {priced
+                    ? course.price === 'Free'
+                      ? 'Free access'
+                      : 'One-time payment'
+                    : 'Course price'}
                 </span>
-                {topic}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {(course.closingHeading || course.closingText) && (
-          <div className="course-modal__closing">
-            {course.closingHeading && (
-              <h3 className="course-modal__closing-title">{course.closingHeading}</h3>
-            )}
-            {course.closingText && (
-              <p className="course-modal__closing-text">{course.closingText}</p>
-            )}
+                <strong className={priced ? '' : 'is-custom'}>{formatPrice(course.price)}</strong>
+              </div>
+            </div>
           </div>
-        )}
 
-        {course.closingStatement && (
-          <p className="course-modal__statement">
-            <Sparkles size={15} />
-            {course.closingStatement}
-          </p>
-        )}
-
-        <div className="course-modal__footer">
-          <div className="course-modal__price">
-            <span>
-              {priced
-                ? course.price === 'Free'
-                  ? 'Free access'
-                  : 'One-time payment'
-                : 'Course price'}
-            </span>
-            <strong className={priced ? '' : 'is-custom'}>{formatPrice(course.price)}</strong>
-          </div>
-          {!active ? (
-            comingSoon ? (
-              <Button variant="secondary" disabled icon={<Sparkles size={18} />}>
-                Coming Soon
-              </Button>
-            ) : (
-              <Button variant="secondary" disabled>
-                Enrollment Opening Soon
-              </Button>
-            )
-          ) : hasWhatsAppGroup ? (
-            <Button
-              as="a"
-              href={course.whatsappGroupLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              icon={<MessageCircle size={18} />}
-            >
-              Join Now
-            </Button>
-          ) : (
-            <Button
-              as="a"
-              href={getEnrollmentContactLink(course)}
-              variant="secondary"
-              icon={<Mail size={18} />}
-            >
-              Contact for Enrollment
-            </Button>
-          )}
+          <EnrollmentForm
+            course={course}
+            options={enrollmentCourseOptions}
+            onCourseChange={onCourseChange}
+          />
         </div>
-        <p className="course-modal__note">
-          {course.enrollmentNote ||
-            (!active
-              ? comingSoon
-                ? 'This course is still in the pipeline. Join the course WhatsApp group to be notified when it launches.'
-                : 'Enrollment for this course opens soon. Join the course WhatsApp group to stay updated.'
-              : hasWhatsAppGroup
-                ? 'Join the WhatsApp group for course updates and enrollment details.'
-                : 'This course is open. Contact us and we will share the WhatsApp group and enrollment details.')}
-        </p>
       </div>
     </Modal>
   );
