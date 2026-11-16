@@ -1,4 +1,4 @@
-import { Clock, MessageCircle, Route, Sparkles } from 'lucide-react';
+import { ClipboardCheck, Clock, Route, Sparkles } from 'lucide-react';
 import { features } from '../data/features';
 import Reveal from './Reveal';
 import SectionHeading from './SectionHeading';
@@ -7,7 +7,7 @@ const iconMap = {
   Clock,
   Sparkles,
   Route,
-  MessageCircle,
+  ClipboardCheck,
 };
 
 export default function WhyChoose() {

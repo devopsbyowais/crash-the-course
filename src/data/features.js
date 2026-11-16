@@ -15,8 +15,9 @@ export const features = [
     icon: 'Route',
   },
   {
-    title: 'Direct WhatsApp Enrollment',
-    description: 'Join the course-specific WhatsApp group for updates and enrollment details.',
-    icon: 'MessageCircle',
+    title: 'Easy Online Registration',
+    description:
+      'Choose your preferred course, complete the registration form, and submit your details to get started with your learning journey.',
+    icon: 'ClipboardCheck',
   },
 ];
