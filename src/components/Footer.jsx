@@ -34,8 +34,8 @@ export default function Footer({ onSupport }) {
               Practical, expert-designed courses that help you build real skills and move toward
               the future you want.
             </p>
-            <a className="footer__email" href="mailto:hello@crashthecourse.com">
-              hello@crashthecourse.com
+            <a className="footer__email" href="mailto:info@crashthecourse.com">
+              info@crashthecourse.com
             </a>
             <div className="footer__socials" aria-label="Social media">
               {socialLinks.map(({ label, href, icon: Icon }) => (
@@ -61,7 +61,7 @@ export default function Footer({ onSupport }) {
                 </li>
               ))}
               <li>
-                <a href="mailto:hello@crashthecourse.com">Contact Us</a>
+                <a href="mailto:info@crashthecourse.com">Contact Us</a>
               </li>
             </ul>
           </nav>

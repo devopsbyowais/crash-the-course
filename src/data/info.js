@@ -20,7 +20,7 @@ export const infoTopics = {
       {
         title: 'Contact support',
         paragraphs: [
-          'Still need help? Email us at hello@crashthecourse.com and we will point you in the right direction.',
+          'Still need help? Email us at info@crashthecourse.com and we will point you in the right direction.',
         ],
       },
     ],
@@ -103,7 +103,7 @@ export const infoTopics = {
       {
         title: 'Questions',
         paragraphs: [
-          'If you have questions about these terms, contact hello@crashthecourse.com.',
+          'If you have questions about these terms, contact info@crashthecourse.com.',
         ],
       },
     ],
