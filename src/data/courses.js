@@ -530,12 +530,6 @@ export const mockCourses = courses.filter((course) => course.mock);
 // The course listing: the two enrollment courses first, then the upcoming ones.
 export const listedCourses = [...enrollmentCourses, ...mockCourses];
 
-// Options for the "Select Course" field, in the order they are offered.
-export const enrollmentCourseOptions = [
-  'SaaS Entrepreneurship',
-  'Shopify Local & International',
-];
-
 export const activeCourses = courses.filter((course) => isCourseActive(course));
 
 export const openingSoonCourses = courses.filter(

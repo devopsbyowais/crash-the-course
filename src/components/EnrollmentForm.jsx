@@ -33,7 +33,7 @@ function validate(values) {
   return errors;
 }
 
-export default function EnrollmentForm({ course, options, onCourseChange, onSubmitted }) {
+export default function EnrollmentForm({ course, onCourseChange, onSubmitted }) {
   const [values, setValues] = useState({ studentName: '', email: '', phone: '' });
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle');
@@ -256,11 +256,9 @@ export default function EnrollmentForm({ course, options, onCourseChange, onSubm
             aria-invalid={Boolean(errors.course)}
             required
           >
-            {options.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
+            {/* The dropdown only ever offers the course the student opened,
+                so the submitted course always matches the course page. */}
+            <option value={course.enrollmentCourse}>{course.enrollmentCourse}</option>
           </select>
           {errors.course && (
             <span className="enroll__error" id="enroll-course-error">

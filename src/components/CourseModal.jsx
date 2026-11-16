@@ -3,7 +3,6 @@ import CourseArt from './CourseArt';
 import EnrollmentForm from './EnrollmentForm';
 import Modal from './Modal';
 import { CourseStatusBadge, formatAmount, formatPrice, hasDiscount, hasPrice } from './CourseCard';
-import { enrollmentCourseOptions } from '../data/courses';
 
 function descriptionParagraphs(description) {
   return String(description || '')
@@ -136,7 +135,6 @@ export default function CourseModal({ course, onClose, onCourseChange }) {
 
           <EnrollmentForm
             course={course}
-            options={enrollmentCourseOptions}
             onCourseChange={onCourseChange}
           />
         </div>
