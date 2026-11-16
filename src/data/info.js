@@ -48,12 +48,12 @@ export const infoTopics = {
       {
         question: 'How do I know which courses are open?',
         answer:
-          'Every course card shows its availability status. A green Active badge means the course is accepting students and can be joined from its WhatsApp group, while an amber Enrollment Opening Soon badge means enrollment has not opened yet.',
+          'Each course card displays its current availability status. Green \'Slots Available\' badges indicate that registration is open. Amber \'Enrollment Opening Soon\' badges mean registration has not opened yet, while blue \'Coming Soon\' badges indicate courses that will be introduced in the future.',
       },
       {
         question: 'How do I join a course?',
         answer:
-          'Open a course marked Active and select Join Now. Its WhatsApp group invitation opens in a new tab with enrollment details. Courses marked Enrollment Opening Soon are not accepting students yet, and courses without a group link show Contact for Enrollment.',
+          'Select \'View Course\' on any course marked Slots Available to explore its details and access the registration form. Complete all required fields and submit your registration to secure your place. Courses marked Enrollment Opening Soon or Coming Soon are not currently accepting registrations.',
       },
     ],
   },
