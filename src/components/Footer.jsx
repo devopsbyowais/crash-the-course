@@ -1,15 +1,13 @@
 import { Facebook, Instagram, Linkedin } from 'lucide-react';
 import Logo from './Logo';
 
-// Facebook page for Crash the Course. No page has been configured yet, so the
-// URL is intentionally empty - add the real page URL here and the icon
-// becomes a live link. Nothing else needs to change.
-const FACEBOOK_PAGE_URL = '';
+// Facebook page for Crash the Course.
+const FACEBOOK_PAGE_URL = 'https://www.facebook.com/profile.php?id=61596257138311';
 
 const socialLinks = [
   {
     label: 'Instagram',
-    href: 'https://www.instagram.com',
+    href: 'https://www.instagram.com/crashthecourse01/',
     icon: Instagram,
   },
   {
